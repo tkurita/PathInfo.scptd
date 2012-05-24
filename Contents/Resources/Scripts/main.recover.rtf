@@ -1,0 +1,1976 @@
+{\rtf1\ansi\ansicpg932\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fnil\fcharset128 HiraKakuProN-W3;}
+{\colortbl;\red255\green255\blue255;\red76\green78\blue78;\red0\green0\blue0;\red108\green5\blue211;
+\red0\green0\blue255;\red64\green128\blue0;\red74\green30\blue127;\red0\green22\blue176;\red38\green18\blue82;
+}
+\deftab480
+\pard\pardeftab480\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf2 (* Copyright (C) 2007, 2008, 2009, 2010 ,2011 Tetsuro KURITA\
+\
+This program is free software: you can redistribute it and/or modify\
+it under the terms of the GNU General Public License as published by\
+the Free Software Foundation, either version 3 of the License, or\
+(at your option) any later version.\
+\
+Foobar is distributed in the hope that it will be useful,\
+but WITHOUT ANY WARRANTY; without even the implied warranty of\
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\
+GNU General Public License for more details.\
+\
+You should have received a copy of the GNU General Public License\
+along with Foobar.  If not, see <http://www.gnu.org/licenses/> *)\cf3 \
+\
+
+\b property
+\b0  \cf4 name\cf3  : "PathInfo"\
+
+\b property
+\b0  
+\i \cf5 version
+\i0 \cf3  : "1.0.2b"\
+\
+\cf2 (*!@title PathInfo Reference\
+* Version : 1.0.2b\
+* Author : Tetsuro KURITA ((<tkurita@mac.com>))\
+*)\cf3 \
+\
+\cf2 (*!@group Class methods\
+Obtain information from a path quickly.\
+*)\cf3 \
+\
+\cf2 (*!@abstruct\
+Obtain a name from a reference to a file/folder.\
+@param an_item (a reference to file/folder) : \
+Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.\
+@result\
+text : a name of the passed item\
+*)\cf3 \
+
+\b on
+\b0  \cf6 name_of\cf3 (\cf6 an_item\cf3 )\
+	
+\b return
+\b0  \cf6 make_with\cf3 (\cf6 an_item\cf3 )'s \cf6 item_name\cf3 ()\
+
+\b end
+\b0  \cf6 name_of\cf3 \
+\
+\cf2 (*!@abstruct\
+Obtain a name of the item with removing a path extension.\
+Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.\
+@result\
+Unicode text : basename of the passed item\
+*)\cf3 \
+
+\b on
+\b0  \cf6 basename_of\cf3 (\cf6 an_item\cf3 )\
+	
+\b return
+\b0  \cf6 make_with\cf3 (\cf6 an_item\cf3 )'s \cf6 basename\cf3 ()\
+
+\b end
+\b0  \cf6 basename_of\cf3 \
+\
+\cf2 (*!@abstruct\
+Obtain a path extension of the item. The result does not starts with ".".\
+@param an_item (a reference to file/folder) : \
+Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.\
+<!-- end locale -->\
+@result\
+text : A path extension\
+*)\cf3 \
+
+\b on
+\b0  \cf6 path_extension_of\cf3 (\cf6 an_item\cf3 )\
+	
+\b return
+\b0  \cf6 make_with\cf3 (\cf6 an_item\cf3 , \cf7 true\cf3 )'s \cf6 path_extension\cf3 ()\
+
+\b end
+\b0  \cf6 path_extension_of\cf3 \
+\
+
+\b on
+\b0  \cf6 suffix_of\cf3 (\cf6 an_item\cf3 )\
+	
+\b return
+\b0  \cf6 path_extension_of\cf3 (\cf6 an_item\cf3 )\
+
+\b end
+\b0  \cf6 suffix_of\cf3 \
+\
+\cf2 (*!@abstruct\
+Split a file name into a base name and a path extension.\
+@param a_name (text) : A file name\
+<!-- end locale -->\
+@result list of text: \{basename, path_extension\}\
+*)\cf3 \
+
+\b on
+\b0  \cf6 split_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b if
+\b0  \cf6 a_name\cf3  
+\b contains
+\b0  "." 
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 tid\cf3  
+\b to
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3 \
+		
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  \{"."\}\
+		
+\b set
+\b0  \cf6 name_elements\cf3  
+\b to
+\b0  
+\b every
+\b0  
+\i \cf5 text item
+\i0 \cf3  
+\b of
+\b0  \cf6 a_name\cf3 \
+		
+\b set
+\b0  \cf6 a_suffix\cf3  
+\b to
+\b0  \cf6 name_elements\cf3 's 
+\i \cf5 item
+\i0 \cf3  -1\
+		
+\b set
+\b0  \cf6 a_basename\cf3  
+\b to
+\b0  (
+\i \cf5 items
+\i0 \cf3  1 
+\b thru
+\b0  -2 
+\b of
+\b0  \cf6 name_elements\cf3 ) 
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+		
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  \cf6 tid\cf3 \
+	
+\b else
+\b0 \
+		
+\b set
+\b0  \cf6 a_basename\cf3  
+\b to
+\b0  \cf6 a_name\cf3 \
+		
+\b set
+\b0  \cf6 a_suffix\cf3  
+\b to
+\b0  
+\i \cf5 missing value
+\i0 \cf3 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  \{\cf6 a_basename\cf3 , \cf6 a_suffix\cf3 \}\
+
+\b end
+\b0  \cf6 split_name\cf3 \
+\
+\cf2 (*!@abstruct\
+Obtain a folder path\
+@param an_item (a reference to file/folder) : \
+Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.\
+<!-- end locale -->\
+@result\
+Unicode text : A path to the folder.\
+*)\cf3 \
+
+\b on
+\b0  \cf6 folder_of\cf3 (\cf6 an_item\cf3 )\
+	
+\b return
+\b0  \cf6 make_with\cf3 (\cf6 an_item\cf3 )'s \cf6 folder_ref\cf3 ()\
+
+\b end
+\b0  \cf6 folder_of\cf3 \
+\
+\cf2 (*!@group Constructor Methods *)\cf3 \
+\
+
+\b script
+\b0  \cf6 POSIXPathTranslator\cf3 \
+	
+\b property
+\b0  \cf6 _delimiter\cf3  : "/"\
+	\
+	
+\b on
+\b0  \cf6 to_text\cf3 (\cf6 a_file\cf3 )\
+		
+\b return
+\b0  \cf6 a_file\cf3 's \cf4 POSIX path\cf3 \
+	
+\b end
+\b0  \cf6 to_text\cf3 \
+	\
+	
+\b on
+\b0  \cf6 to_alias\cf3 (\cf6 a_file\cf3 )\
+		
+\b return
+\b0  (
+\i \cf8 POSIX file
+\i0 \cf3  \cf6 a_file\cf3 ) 
+\b as
+\b0  
+\i \cf5 alias
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 to_alias\cf3 \
+	\
+	
+\b on
+\b0  \cf6 resolve_disk\cf3 (\cf6 path_elements\cf3 )\
+		
+\b set
+\b0  \cf6 n_elems\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf4 length\cf3 \
+		
+\b if
+\b0  (\cf6 n_elems\cf3  > 1) 
+\b and
+\b0  (\cf6 path_elements\cf3 's \cf6 item_at\cf3 (2) 
+\b is
+\b0  "Volumes") 
+\b then
+\b0 \
+			
+\b if
+\b0  (\cf6 n_elems\cf3  > 2) 
+\b then
+\b0 \
+				
+\b set
+\b0  \cf6 a_disk\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf6 compose\cf3 (1, 3, \cf7 true\cf3 )\
+			
+\b else
+\b0 \
+				
+\b set
+\b0  \cf6 a_disk\cf3  
+\b to
+\b0  "/"\
+			
+\b end
+\b0  
+\b if
+\b0 \
+		
+\b else
+\b0 \
+			
+\b set
+\b0  \cf6 a_disk\cf3  
+\b to
+\b0  "/"\
+		
+\b end
+\b0  
+\b if
+\b0 \
+		
+\b return
+\b0  \cf6 a_disk\cf3 \
+	
+\b end
+\b0  \cf6 resolve_disk\cf3 \
+	\
+	
+\b on
+\b0  \cf6 hfs_path\cf3 ()\
+		
+\b return
+\b0  (
+\i \cf8 POSIX file
+\i0 \cf3  (\cf4 POSIX path\cf3  
+\b of
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3 )) 
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 hfs_path\cf3 \
+	\
+	
+\b on
+\b0  \cf6 as_text\cf3 ()\
+		
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3 's \cf4 POSIX path\cf3 \
+	
+\b end
+\b0  \cf6 as_text\cf3 \
+
+\b end
+\b0  
+\b script
+\b0 \
+\
+
+\b script
+\b0  \cf6 HFSPathTranslator\cf3 \
+	
+\b property
+\b0  \cf6 _delimiter\cf3  : ":"\
+	\
+	
+\b on
+\b0  \cf6 to_text\cf3 (\cf6 a_file\cf3 )\
+		
+\b return
+\b0  \cf6 a_file\cf3  
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 to_text\cf3 \
+	\
+	
+\b on
+\b0  \cf6 to_alias\cf3 (\cf6 a_file\cf3 )\
+		
+\b return
+\b0  \cf6 a_file\cf3  
+\b as
+\b0  
+\i \cf5 alias
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 to_alias\cf3 \
+	\
+	
+\b on
+\b0  \cf6 resolve_disk\cf3 (\cf6 path_elements\cf3 )\
+		
+\b return
+\b0  (\cf6 path_elements\cf3 's \cf6 item_at\cf3 (1) & \cf6 _delimiter\cf3 )\
+	
+\b end
+\b0  \cf6 resolve_disk\cf3 \
+	\
+	
+\b on
+\b0  \cf6 hfs_path\cf3 ()\
+		
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 hfs_path\cf3 \
+	\
+	
+\b on
+\b0  \cf6 as_text\cf3 ()\
+		
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+	
+\b end
+\b0  \cf6 as_text\cf3 \
+
+\b end
+\b0  
+\b script
+\b0 \
+\
+\cf2 (*!@abstruct\
+Make a PathInfo instance for a file reference.\
+@description\
+If a parameter is text and  does not starts with "/", a parameter is HFS path. And HFS path is used for internal processings. Otherwise, a POSIX path is userd for internal processings.\
+\
+If a path ending with a path delimiter (&quot;/&quot; or &quot;&quot;) is passed as a parameter, the item is considered as a folder i.e. ((<is_folder>)) will return true.\
+@param a_path (alias, furl, POSIX path or HFS path) \
+@result script object : A new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 make_with\cf3 (\cf6 a_path\cf3 )\
+	
+\b set
+\b0  \cf6 a_class\cf3  
+\b to
+\b0  
+\i \cf5 class
+\i0 \cf3  
+\b of
+\b0  \cf6 a_path\cf3 \
+	
+\b if
+\b0  \cf6 a_class\cf3  
+\b is
+\b0  
+\b in
+\b0  \{
+\i \cf5 text
+\i0 \cf3 , 
+\i \cf5 Unicode text
+\i0 \cf3 , 
+\i \cf5 string
+\i0 \cf3 \} 
+\b then
+\b0 \
+		
+\b if
+\b0  \cf6 a_path\cf3  
+\b starts with
+\b0  "~/" 
+\b then
+\b0 \
+			
+\b set
+\b0  \cf6 hf\cf3  
+\b to
+\b0  (
+\b \cf8 path to
+\b0 \cf3  \cf9 home folder\cf3 )'s \cf4 POSIX path\cf3 \
+			
+\b if
+\b0  \cf4 length\cf3  
+\b of
+\b0  \cf6 a_path\cf3  > 2 
+\b then
+\b0 \
+				
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 hf\cf3  & (
+\i \cf5 text
+\i0 \cf3  3 
+\b thru
+\b0  -1 
+\b of
+\b0  \cf6 a_path\cf3 )\
+			
+\b else
+\b0 \
+				
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 hf\cf3 \
+			
+\b end
+\b0  
+\b if
+\b0 \
+			
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 POSIXPathTranslator\cf3 \
+		
+\b else
+\b0  
+\b if
+\b0  \cf6 a_path\cf3  
+\b starts with
+\b0  "/" 
+\b then
+\b0 \
+			
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 POSIXPathTranslator\cf3 \
+		
+\b else
+\b0 \
+			
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 HFSPathTranslator\cf3 \
+		
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b else
+\b0 \
+		
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 POSIXPathTranslator\cf3 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  \cf6 make_with_pathtrans\cf3 (\cf6 a_path\cf3 , \cf6 pathtrans\cf3 )\
+
+\b end
+\b0  \cf6 make_with\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a PathInfo instance for a file reference.\
+@description\
+If a HFS path ending with ":" is passed as a parameter, the item is considered as a folder i.e. ((<is_folder>)) will return true.\
+@param a_path (alias, furl, text of POSIX path) \
+@result script object : A new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 make_with_hfs\cf3 (\cf6 a_path\cf3 )\
+	
+\b return
+\b0  \cf6 make_with_pathtrans\cf3 (\cf6 a_path\cf3 , \cf6 HFSPathTranslator\cf3 )\
+
+\b end
+\b0  \cf6 make_with_hfs\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a PathInfo instance for a file reference. A synonym of ((<make_with>))\
+@description\
+If a POSIX path ending with "/" is passed as a parameter, the item is considered as a folder i.e. ((<is_folder>)) will return true.\
+@param a_path (alias, furl, text of POSIX path) \
+@result script object : A new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 make_with_posix\cf3 (\cf6 a_path\cf3 )\
+	
+\b return
+\b0  \cf6 make_with_pathtrans\cf3 (\cf6 a_path\cf3 , \cf6 POSIXPathTranslator\cf3 )\
+
+\b end
+\b0  \cf6 make_with_posix\cf3 \
+\
+
+\b on
+\b0  \cf6 make_with_pathtrans\cf3 (\cf6 a_path\cf3 , \cf6 pathtrans\cf3 )\
+	
+\b set
+\b0  \cf6 a_class\cf3  
+\b to
+\b0  
+\i \cf5 class
+\i0 \cf3  
+\b of
+\b0  \cf6 a_path\cf3 \
+	
+\b set
+\b0  \cf6 is_text\cf3  
+\b to
+\b0  \cf7 false\cf3 \
+	\
+	
+\b if
+\b0  \cf6 a_class\cf3  
+\b is
+\b0  
+\b in
+\b0  \{
+\i \cf5 Unicode text
+\i0 \cf3 , 
+\i \cf5 string
+\i0 \cf3 , 
+\i \cf5 text
+\i0 \cf3 \} 
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 is_text\cf3  
+\b to
+\b0  \cf7 true\cf3 \
+	
+\b else
+\b0 \
+		
+\b if
+\b0  \cf6 a_class\cf3  
+\b is
+\b0  
+\i \cf5 alias
+\i0 \cf3  
+\b then
+\b0 \
+			
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_text\cf3 (\cf6 a_path\cf3 )\
+		
+\b else
+\b0  
+\b if
+\b0  \cf6 a_class\cf3  
+\b is
+\b0  
+\b in
+\b0  \{
+\i \cf5 file specification
+\i0 \cf3 , \'ab
+\i \cf5 class
+\i0 \cf3  furl\'bb\} 
+\b then
+\b0 \
+			
+\b try
+\b0 \
+				
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_text\cf3 (\cf6 a_path\cf3  
+\b as
+\b0  
+\i \cf5 alias
+\i0 \cf3 )\
+			
+\b on
+\b0  
+\b error
+\b0 \
+				
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_text\cf3 (\cf6 a_path\cf3 )\
+				
+\b set
+\b0  \cf6 is_text\cf3  
+\b to
+\b0  \cf7 true\cf3 \
+			
+\b end
+\b0  
+\b try
+\b0 \
+		
+\b else
+\b0 \
+			
+\b try
+\b0 \
+				
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 a_path\cf3  
+\b as
+\b0  
+\i \cf5 alias
+\i0 \cf3 \
+			
+\b on
+\b0  
+\b error
+\b0 \
+				
+\b error
+\b0  (\cf6 a_class\cf3  
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 ) & " is unsupported data type. PathInfo can't convert to a path." \cf5 number\cf3  980\
+			
+\b end
+\b0  
+\b try
+\b0 \
+			
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_text\cf3 (\cf6 a_path\cf3 )\
+		
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	\
+	
+\b set
+\b0  \cf6 path_elements\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 decompose\cf3 (\cf6 a_path\cf3 )\
+	
+\b set
+\b0  \cf6 a_disk\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 resolve_disk\cf3 (\cf6 path_elements\cf3 )\
+	
+\b if
+\b0  
+\b not
+\b0  \cf6 is_text\cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_disk\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_alias\cf3 (\cf6 a_disk\cf3 )\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	\
+	
+\b set
+\b0  \cf6 a_name\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf6 item_at\cf3 (-1)\
+	
+\b if
+\b0  \cf6 a_name\cf3  
+\b is
+\b0  "" 
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 folder_flag\cf3  
+\b to
+\b0  \cf7 true\cf3 \
+		
+\b set
+\b0  \cf6 a_name\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf6 item_at\cf3 (-2)\
+		
+\b if
+\b0  \cf6 path_elements\cf3 's \cf4 length\cf3  
+\b is
+\b0  2 
+\b then
+\b0  \cf2 -- if a_path is disk\cf3 \
+			
+\b tell
+\b0  
+\i \cf5 application
+\i0 \cf3  "Finder"\
+				
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf4 desktop\cf3 \
+			
+\b end
+\b0  
+\b tell
+\b0 \
+		
+\b else
+\b0  \cf2 -- if a_path is folder\cf3 \
+			
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf6 compose\cf3 (1, -3, \cf7 true\cf3 )\
+			
+\b if
+\b0  
+\b not
+\b0  \cf6 is_text\cf3  
+\b then
+\b0 \
+				
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_alias\cf3 (\cf6 a_folder\cf3 )\
+			
+\b end
+\b0  
+\b if
+\b0 \
+		
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b else
+\b0 \
+		
+\b set
+\b0  \cf6 folder_flag\cf3  
+\b to
+\b0  \cf7 false\cf3 \
+		
+\b if
+\b0  \cf6 path_elements\cf3 's \cf4 length\cf3  > 1 
+\b then
+\b0 \
+			
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf6 path_elements\cf3 's \cf6 compose\cf3 (1, -2, \cf7 true\cf3 )\
+			
+\b if
+\b0  
+\b not
+\b0  \cf6 is_text\cf3  
+\b then
+\b0 \
+				
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf6 pathtrans\cf3 's \cf6 to_alias\cf3 (\cf6 a_folder\cf3 )\
+			
+\b end
+\b0  
+\b if
+\b0 \
+		
+\b else
+\b0 \
+			
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  
+\i \cf5 missing value
+\i0 \cf3 \
+		
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	\
+	
+\b set
+\b0  \{\cf6 a_basename\cf3 , \cf6 a_suffix\cf3 \} 
+\b to
+\b0  \cf6 split_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b return
+\b0  \cf6 make_with_vars\cf3 (\cf6 pathtrans\cf3 , \cf6 a_disk\cf3 , \cf6 a_folder\cf3 , \cf6 a_name\cf3 , \cf6 a_basename\cf3 , \cf6 a_suffix\cf3 , \cf6 folder_flag\cf3 , \cf6 a_path\cf3 )\
+
+\b end
+\b0  \cf6 make_with_pathtrans\cf3 \
+\
+
+\b on
+\b0  \cf6 make_with_opts\cf3 (\cf6 a_path\cf3 , \{\cf6 prefering_posix\cf3 :\cf6 a_bool\cf3 \})\
+	
+\b if
+\b0  \cf6 a_bool\cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 POSIXPathTranslator\cf3 \
+	
+\b else
+\b0 \
+		
+\b set
+\b0  \cf6 pathtrans\cf3  
+\b to
+\b0  \cf6 HFSPathTranslator\cf3 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  \cf6 make_with_pathtrans\cf3 (\cf6 a_path\cf3 , \cf6 pathtrans\cf3 )\
+
+\b end
+\b0  \cf6 make_with_opts\cf3 \
+\
+
+\b on
+\b0  \cf6 make_with_vars\cf3 (\cf6 pathtrans\cf3 , \cf6 a_disk\cf3 , \cf6 a_folder\cf3 , \cf6 a_name\cf3 , \cf6 a_basename\cf3 , \cf6 a_suffix\cf3 , \cf6 folder_flag\cf3 , \cf6 a_path\cf3 )\
+	
+\b script
+\b0  \cf6 PathInfo\cf3 \
+		
+\b property
+\b0  \cf4 parent\cf3  : \cf6 pathtrans\cf3 \
+		
+\b property
+\b0  \cf6 _disk\cf3  : \cf6 a_disk\cf3 \
+		
+\b property
+\b0  \cf6 _folder\cf3  : \cf6 a_folder\cf3 \
+		
+\b property
+\b0  \cf6 _name\cf3  : \cf6 a_name\cf3 \
+		
+\b property
+\b0  \cf6 _basename\cf3  : \cf6 a_basename\cf3 \
+		
+\b property
+\b0  \cf6 _path_extension\cf3  : \cf6 a_suffix\cf3 \
+		
+\b property
+\b0  \cf6 _is_folder\cf3  : \cf6 folder_flag\cf3 \
+		
+\b property
+\b0  \cf6 _item_ref\cf3  : \cf6 a_path\cf3 \
+	
+\b end
+\b0  
+\b script
+\b0 \
+	
+\b return
+\b0  \cf6 PathInfo\cf3 \
+
+\b end
+\b0  \cf6 make_with_vars\cf3 \
+\
+\cf2 (*!@group Obtain path information *)\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain a name of the file or the folder.\
+@result text\
+*)\cf3 \
+
+\b on
+\b0  \cf6 item_name\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _name\cf3 \
+
+\b end
+\b0  \cf6 item_name\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain a name without path extension.\
+@result text\
+*)\cf3 \
+
+\b on
+\b0  \cf6 basename\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _basename\cf3 \
+
+\b end
+\b0  \cf6 basename\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain a path extension of the file name. The result does not starts with ".".\
+@result text\
+*)\cf3 \
+
+\b on
+\b0  \cf6 path_extension\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _path_extension\cf3 \
+
+\b end
+\b0  \cf6 path_extension\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain a file reference to the folder containing the target.\
+@result an alias or a path\
+*)\cf3 \
+
+\b on
+\b0  \cf6 folder_ref\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _folder\cf3 \
+
+\b end
+\b0  \cf6 folder_ref\cf3 \
+\
+\cf2 (*!@abstruct \
+Whether the target is a folder or not.\
+@description\
+If given path ends with a path delimiter, true will be returned wtihout checking file system. Therefor a wrong result may be returned.\
+@result boolean\
+*)\cf3 \
+
+\b on
+\b0  \cf6 is_folder\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _is_folder\cf3 \
+
+\b end
+\b0  \cf6 is_folder\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain an internal file reference which the target contains.\
+@result alias or text of path\
+*)\cf3 \
+
+\b on
+\b0  \cf6 item_ref\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3 \
+
+\b end
+\b0  \cf6 item_ref\cf3 \
+\
+\cf2 (*!@abstruct \
+Whether an item exits in the file sysem or not.\
+@description\
+If the target exsits, the internal file reference is converted to an alias.\
+@result boolean\
+*)\cf3 \
+
+\b on
+\b0  \cf6 item_exists\cf3 ()\
+	
+\b try
+\b0 \
+		
+\b set
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 to_alias\cf3 (\cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _item_ref\cf3 ))\
+		
+\b set
+\b0  
+\b my
+\b0  \cf6 _folder\cf3  
+\b to
+\b0  \cf6 to_alias\cf3 (\cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _folder\cf3 ))\
+		
+\b return
+\b0  \cf7 true\cf3 \
+	
+\b end
+\b0  
+\b try
+\b0 \
+	
+\b return
+\b0  \cf7 false\cf3 \
+
+\b end
+\b0  \cf6 item_exists\cf3 \
+\
+\cf2 (*!@abstruct \
+Whether an item exits in the file sysem or not.\
+@description\
+The internal file reference will not be changed unlike ((<item_exists>)). \
+@result boolean\
+*)\cf3 \
+
+\b on
+\b0  \cf6 item_exists_without_update\cf3 ()\
+	
+\b try
+\b0 \
+		\cf6 to_alias\cf3 (\cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _item_ref\cf3 ))\
+		
+\b return
+\b0  \cf7 true\cf3 \
+	
+\b end
+\b0  
+\b try
+\b0 \
+	
+\b return
+\b0  \cf7 false\cf3 \
+
+\b end
+\b0  \cf6 item_exists_without_update\cf3 \
+\
+\cf2 (*!@abstruct \
+If ((<child>)) and ((<change_folder>)) prefer posix path, true is returned.\
+@result boolean\
+*)\cf3 \
+
+\b on
+\b0  \cf6 is_posix\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _delimiter\cf3  
+\b is
+\b0  "/"\
+
+\b end
+\b0  \cf6 is_posix\cf3 \
+\
+\cf2 (*!@group Converting reference form *)\cf3 \
+\
+\cf2 (*!@abstruct Obtain a file reference as alias.\
+@description\
+If failed to coerce to an alias, an error will raise.\
+@result alias\
+*)\cf3 \
+
+\b on
+\b0  \cf6 as_alias\cf3 ()\
+	
+\b if
+\b0  
+\i \cf5 class
+\i0 \cf3  
+\b of
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b is
+\b0  
+\b not
+\b0  
+\i \cf5 alias
+\i0 \cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 to_alias\cf3 (\cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _item_ref\cf3 ))\
+		
+\b set
+\b0  
+\b my
+\b0  \cf6 _folder\cf3  
+\b to
+\b0  \cf6 to_alias\cf3 (\cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _folder\cf3 ))\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3 \
+
+\b end
+\b0  \cf6 as_alias\cf3 \
+\
+\cf2 (*!@abstruct Obtain a file reference as File URL.\
+@result File URL\
+*)\cf3 \
+
+\b on
+\b0  \cf6 as_furl\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b as
+\b0  \'ab
+\i \cf5 class
+\i0 \cf3  furl\'bb\
+
+\b end
+\b0  \cf6 as_furl\cf3 \
+\
+\cf2 (*!@abstruct Obtain a file reference as POSIX path form.\
+@result text\
+*)\cf3 \
+
+\b on
+\b0  \cf6 posix_path\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3 's \cf4 POSIX path\cf3 \
+
+\b end
+\b0  \cf6 posix_path\cf3 \
+\
+\cf2 (*!@syntax hfs_path()\
+@abstruct Obtain a file reference as HFS path form.\
+@result text\
+*)\cf3 \
+\
+\cf2 (*!@syntax as_text()\
+@abstruct Obtain a path text.\
+@result text of HFS path or POSX path. The path form follows the path form passed to ((<make_with>)).\
+*)\cf3 \
+\
+\
+\cf2 (*!@group Making a new instance from the instance *)\cf3 \
+\
+\cf2 (*!@abstruct \
+Obtain an instance of PathInfo referencing the folder containing the target.\
+@result an instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 parent_folder\cf3 ()\
+	
+\b return
+\b0  \cf6 make_with_opts\cf3 (\cf6 folder_ref\cf3 (), \{\cf6 prefering_posix\cf3 :\cf6 is_posix\cf3 ()\})\
+
+\b end
+\b0  \cf6 parent_folder\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a new PathInfo changing the item name.\
+@param a_name (text) : An item name\
+@result script object : A new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 change_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b set
+\b0  \{\cf6 a_basename\cf3 , \cf6 a_suffix\cf3 \} 
+\b to
+\b0  \cf6 split_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b tell
+\b0  \cf6 clone\cf3 ()\
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _name\cf3  
+\b to
+\b0  \cf6 a_name\cf3 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _basename\cf3  
+\b to
+\b0  \cf6 a_basename\cf3 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _path_extension\cf3  
+\b to
+\b0  \cf6 a_suffix\cf3 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 build_path\cf3 ()\
+		
+\b return
+\b0  
+\b it
+\b0 \
+	
+\b end
+\b0  
+\b tell
+\b0 \
+
+\b end
+\b0  \cf6 change_name\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a new PathInfo changing the path extension\
+@param a_text (text) : A path extension. It should not start with &quot;.&quot;.\
+@result script object : a new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 change_path_extension\cf3 (\cf6 a_text\cf3 )\
+	
+\b tell
+\b0  \cf6 clone\cf3 ()\
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _path_extension\cf3  
+\b to
+\b0  \cf6 a_text\cf3 \
+		
+\b if
+\b0  \cf6 a_text\cf3  
+\b is
+\b0  
+\i \cf5 missing value
+\i0 \cf3  
+\b then
+\b0 \
+			
+\b set
+\b0  
+\b its
+\b0  \cf6 _name\cf3  
+\b to
+\b0  
+\b its
+\b0  \cf6 _basename\cf3 \
+		
+\b else
+\b0 \
+			
+\b set
+\b0  
+\b its
+\b0  \cf6 _name\cf3  
+\b to
+\b0  
+\b its
+\b0  \cf6 _basename\cf3  & "." & \cf6 a_text\cf3 \
+		
+\b end
+\b0  
+\b if
+\b0 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 build_path\cf3 ()\
+		
+\b return
+\b0  
+\b it
+\b0 \
+	
+\b end
+\b0  
+\b tell
+\b0 \
+
+\b end
+\b0  \cf6 change_path_extension\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a new PathInfo changing the folder.\
+@description\
+The path form for a parameter must keep consistency with a path passed to the constructor method. If the target was constucted by ((<make_with_posix>)). The path form must be POSIX. If the target was constructed by ((<make_with_hfs>)), the path form must be HFS.\
+@param a_folder (alias, furl, POSIX path or HFS path) : A reference to a folder\
+@result script object : A new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 change_folder\cf3 (\cf6 a_folder\cf3 )\
+	
+\b if
+\b0  (
+\i \cf5 class
+\i0 \cf3  
+\b of
+\b0  \cf6 a_folder\cf3  
+\b is
+\b0  
+\b in
+\b0  \{
+\i \cf5 text
+\i0 \cf3 , 
+\i \cf5 Unicode text
+\i0 \cf3 , 
+\i \cf5 string
+\i0 \cf3 \}) 
+\b and
+\b0  (\cf6 a_folder\cf3  
+\b does not
+\b0  
+\b end
+\b0  
+\b with
+\b0  \cf6 delimiter\cf3 ()) 
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_folder\cf3  
+\b to
+\b0  \cf6 a_folder\cf3  & \cf6 delimiter\cf3 ()\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b tell
+\b0  \cf6 clone\cf3 ()\
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _folder\cf3  
+\b to
+\b0  \cf6 a_folder\cf3 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _disk\cf3  
+\b to
+\b0  
+\i \cf5 missing value
+\i0 \cf3 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 build_path\cf3 ()\
+		
+\b return
+\b0  
+\b it
+\b0 \
+	
+\b end
+\b0  
+\b tell
+\b0 \
+
+\b end
+\b0  \cf6 change_folder\cf3 \
+\
+\cf2 (*!@abstruct\
+Make a new PathInfo appending a sub path.\
+@description\
+The path form for a parameter must keep consistency with a path passed to the constructor method. If the target was constucted by ((<make_with_posix>)). The path form must be POSIX. If the target was constructed by ((<make_with_hfs>)), the path form must be HFS.\
+@param subpath (text)  : A relative path from the target.\
+@result script object : a new instance of PathInfo\
+*)\cf3 \
+
+\b on
+\b0  \cf6 child\cf3 (\cf6 subpath\cf3 )\
+	
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 as_text\cf3 ()\
+	
+\b if
+\b0  \cf6 a_path\cf3  
+\b does not
+\b0  
+\b end
+\b0  
+\b with
+\b0  \cf6 delimiter\cf3 () 
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  \cf6 a_path\cf3  & \cf6 delimiter\cf3 ()\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  \cf6 make_with_opts\cf3 (\cf6 a_path\cf3  & \cf6 subpath\cf3 , \{\cf6 prefering_posix\cf3 :\cf6 is_posix\cf3 ()\})\
+
+\b end
+\b0  \cf6 child\cf3 \
+\
+
+\b on
+\b0  \cf6 clone\cf3 ()\
+	
+\b return
+\b0  \cf6 make_with_vars\cf3 (\cf4 parent\cf3 , 
+\b my
+\b0  \cf6 _disk\cf3 , 
+\b my
+\b0  \cf6 _folder\cf3 , 
+\b my
+\b0  \cf6 _name\cf3 , 
+\b my
+\b0  \cf6 _basename\cf3 , 
+\b my
+\b0  \cf6 _path_extension\cf3 , 
+\b my
+\b0  \cf6 _is_folder\cf3 , 
+\b my
+\b0  \cf6 _item_ref\cf3 )\
+
+\b end
+\b0  \cf6 clone\cf3 \
+\
+\cf2 (* private *)\cf3 \
+
+\b on
+\b0  \cf6 build_path\cf3 ()\
+	
+\b if
+\b0  
+\b my
+\b0  \cf6 _path_extension\cf3  
+\b is
+\b0  
+\i \cf5 missing value
+\i0 \cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_name\cf3  
+\b to
+\b0  
+\b my
+\b0  \cf6 _name\cf3 \
+	
+\b else
+\b0 \
+		
+\b set
+\b0  \cf6 a_name\cf3  
+\b to
+\b0  (
+\b my
+\b0  \cf6 _basename\cf3  & "." & 
+\b my
+\b0  \cf6 _path_extension\cf3 )\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b if
+\b0  
+\b my
+\b0  \cf6 _is_folder\cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_name\cf3  
+\b to
+\b0  \cf6 a_name\cf3  & \cf6 delimiter\cf3 ()\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b set
+\b0  \cf6 folder_path\cf3  
+\b to
+\b0  \cf6 to_text\cf3 (
+\b my
+\b0  \cf6 _folder\cf3 )\
+	
+\b return
+\b0  \cf6 folder_path\cf3  & \cf6 a_name\cf3 \
+
+\b end
+\b0  \cf6 build_path\cf3 \
+\
+\cf2 (* methods for PathElements *)\cf3 \
+
+\b on
+\b0  \cf6 item_at\cf3 (\cf6 n\cf3 )\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _contents\cf3 's 
+\i \cf5 item
+\i0 \cf3  \cf6 n\cf3 \
+
+\b end
+\b0  \cf6 item_at\cf3 \
+\
+
+\b on
+\b0  \cf6 compose\cf3 (\cf6 n1\cf3 , \cf6 n2\cf3 , \cf6 folder_flag\cf3 )\
+	
+\b set
+\b0  \cf6 tid\cf3  
+\b to
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3 \
+	
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  \{
+\b my
+\b0  \cf6 _delimiter\cf3 \}\
+	
+\b set
+\b0  \cf6 a_result\cf3  
+\b to
+\b0  (
+\i \cf5 items
+\i0 \cf3  \cf6 n1\cf3  
+\b thru
+\b0  \cf6 n2\cf3  
+\b of
+\b0  
+\b my
+\b0  \cf6 _contents\cf3 ) 
+\b as
+\b0  
+\i \cf5 Unicode text
+\i0 \cf3 \
+	
+\b if
+\b0  \cf6 folder_flag\cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  \cf6 a_result\cf3  
+\b to
+\b0  \cf6 a_result\cf3  & 
+\b my
+\b0  \cf6 _delimiter\cf3 \
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  \cf6 tid\cf3 \
+	
+\b return
+\b0  \cf6 a_result\cf3 \
+
+\b end
+\b0  \cf6 compose\cf3 \
+\
+
+\b on
+\b0  \cf6 make_path_elements\cf3 (\cf6 a_list\cf3 )\
+	
+\b set
+\b0  \cf6 a_parent\cf3  
+\b to
+\b0  
+\b me
+\b0 \
+	
+\b script
+\b0  \cf6 pathElements\cf3 \
+		
+\b property
+\b0  \cf4 parent\cf3  : \cf6 a_parent\cf3 \
+		
+\b property
+\b0  \cf6 _contents\cf3  : \cf6 a_list\cf3 \
+		
+\b property
+\b0  \cf4 length\cf3  : \cf4 length\cf3  
+\b of
+\b0  \cf6 a_list\cf3 \
+	
+\b end
+\b0  
+\b script
+\b0 \
+
+\b end
+\b0  \cf6 make_path_elements\cf3 \
+\
+
+\b on
+\b0  \cf6 decompose\cf3 (\cf6 a_path\cf3 )\
+	
+\b set
+\b0  \cf6 tid\cf3  
+\b to
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3 \
+	
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  
+\b my
+\b0  \cf6 _delimiter\cf3 \
+	
+\b set
+\b0  \cf6 a_list\cf3  
+\b to
+\b0  
+\b every
+\b0  
+\i \cf5 text item
+\i0 \cf3  
+\b of
+\b0  \cf6 a_path\cf3 \
+	
+\b set
+\b0  \cf4 AppleScript\cf3 's \cf4 text item delimiters\cf3  
+\b to
+\b0  \cf6 tid\cf3 \
+	
+\b return
+\b0  \cf6 make_path_elements\cf3 (\cf6 a_list\cf3 )\
+
+\b end
+\b0  \cf6 decompose\cf3 \
+\
+
+\b on
+\b0  \cf6 delimiter\cf3 ()\
+	
+\b return
+\b0  
+\b my
+\b0  \cf6 _delimiter\cf3 \
+
+\b end
+\b0  \cf6 delimiter\cf3 \
+\
+
+\b on
+\b0  \cf6 set_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b set
+\b0  \{
+\b my
+\b0  \cf6 _basename\cf3 , 
+\b my
+\b0  \cf6 _path_extension\cf3 \} 
+\b to
+\b0  \cf6 split_name\cf3 (\cf6 a_name\cf3 )\
+	
+\b set
+\b0  
+\b my
+\b0  \cf6 _name\cf3  
+\b to
+\b0  \cf6 a_name\cf3 \
+	
+\b if
+\b0  
+\i \cf5 class
+\i0 \cf3  
+\b of
+\b0  
+\b my
+\b0  \cf6 _item_ref\cf3  
+\b is
+\b0  
+\b not
+\b0  
+\i \cf5 alias
+\i0 \cf3  
+\b then
+\b0 \
+		
+\b set
+\b0  
+\b its
+\b0  \cf6 _item_ref\cf3  
+\b to
+\b0  \cf6 build_path\cf3 ()\
+	
+\b end
+\b0  
+\b if
+\b0 \
+	
+\b return
+\b0  
+\b me
+\b0 \
+
+\b end
+\b0  \cf6 set_name\cf3 \
+\
+\cf2 (*!@group Error Numbers and Error Messages\
+* number : 980\
+	* message : Unknown data type. PathInfo can't convert to a path.\
+	* Raise when a parameter passed to ((<make_with>)), ((<make_with_hfs>)), ((<make_with_posix>)),((<change_folder>)) can not be treated as a file reference.\
+*)\cf3 \
+\
+
+\b on
+\b0  
+\b \cf5 run
+\b0 \cf3 \
+	\cf2 --return debug()\cf3 \
+	
+\b try
+\b0 \
+		
+\b \cf8 show helpbook
+\b0 \cf3  (
+\b \cf8 path to
+\b0 \cf3  
+\b me
+\b0 ) 
+\b with
+\b0  \cf8 recovering InfoPlist\cf3 \
+	
+\b on
+\b0  
+\b error
+\b0  \cf6 msg\cf3  \cf5 number\cf3  \cf6 errno\cf3 \
+		
+\b \cf8 display alert
+\b0 \cf3  (\cf6 msg\cf3  & \cf4 return\cf3  & \cf6 errno\cf3 )\
+	
+\b end
+\b0  
+\b try
+\b0 \
+
+\b end
+\b0  
+\b \cf5 run
+\b0 \cf3 \
+\
+
+\b on
+\b0  \cf6 debug\cf3 ()\
+	\cf2 --boot (module loader) for me\cf3 \
+	\
+	\cf2 --set a_path to "/Users/tkurita/Dev/Projects/TeX Tools for mi/
+\f1 \'83\'54\'83\'93\'83\'76\'83\'8b
+\f0 /insert-file/sample-figure.pdf"\cf3 \
+	\cf2 --set a_path to "/Volumes/Users/tkurita/Dev/Projects/TeX Tools for mi/
+\f1 \'83\'54\'83\'93\'83\'76\'83\'8b
+\f0 /insert-file/"\cf3 \
+	\cf2 --set a_path to path to me\cf3 \
+	\cf2 --set a_path to alias "Macintosh HD:Users:tkurita:Desktop:Untitled2.scpt"\cf3 \
+	\cf2 --set a_path to "HelpSearch.scpt"\cf3 \
+	\cf2 --set a_result to do(POSIX file a_path)\cf3 \
+	\cf2 --class of name of a_result\cf3 \
+	\cf2 --set a_path to choose file name default name "index.html"\cf3 \
+	\cf2 --prefer_posix(false)\cf3 \
+	
+\b set
+\b0  \cf6 a_path\cf3  
+\b to
+\b0  "Macintosh HD:Users:tkurita:Library:Preferences:InsertSignature"\
+	\cf2 --set pathelems to POSIXPathTranslator's decompose(a_path)\cf3 \
+	\cf2 --return pathelems\cf3 \
+	\cf2 --return pathelems's compose(true)\cf3 \
+	
+\b set
+\b0  \cf6 a_result\cf3  
+\b to
+\b0  \cf6 make_with\cf3 (\cf6 a_path\cf3 )\
+	
+\b return
+\b0  \cf6 a_result\cf3 's \cf6 change_path_extension\cf3 (
+\i \cf5 missing value
+\i0 \cf3 )'s \cf6 posix_path\cf3 ()\
+	
+\b return
+\b0  \cf6 a_result\cf3 's \cf6 posix_path\cf3 ()\
+	\cf2 --set a_result to make_with_hfs(a_path)\cf3 \
+	
+\b return
+\b0  \cf6 a_result\cf3 's \cf6 as_text\cf3 ()\
+	
+\b \cf5 log
+\b0 \cf3  \cf6 a_result\cf3 's \cf6 build_path\cf3 ()\
+	\cf2 --return a_result's clone()\cf3 \
+	
+\b return
+\b0  \cf6 a_result\cf3 's \cf6 change_path_extension\cf3 ("txt")\
+	
+\b return
+\b0  \cf6 a_result\cf3 's \cf6 clone\cf3 ()\
+	
+\b return
+\b0  \cf6 a_result\cf3 \
+
+\b end
+\b0  \cf6 debug\cf3 \
+\
+}

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<title>PathInfo Reference</title>
+		
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link href="assets/default.css" type="text/css" rel="stylesheet" media="all" />
+		<meta name="keywords" content="PathInfo, AppleScript" />
+		<script type="text/javascript" src="assets/run_helpscript.js"></script>
+		<script type="text/javascript" src="assets/navibar-jump.js"></script>
+		<link href="./" id="HelpBookRoot" />
+	</head>
+
+	<body>
+		<div id="navi-bar">
+			<div class="to-root">
+				<!-- InstanceBeginEditable name="to-root" --><a href="../index.html">PathInfo Help</a><!-- InstanceEndEditable -->
+			</div>
+			<select onchange="navibarJump(this)">
+<option value="">
+§
+</option>
+<option value="#Class_methods">
+Class methods
+</option>
+<option value="#name_of">
+- name_of
+</option>
+<option value="#basename_of">
+- basename_of
+</option>
+<option value="#path_extension_of">
+- path_extension_of
+</option>
+<option value="#split_name">
+- split_name
+</option>
+<option value="#folder_of">
+- folder_of
+</option>
+<option value="#Constructor_Methods">
+Constructor Methods
+</option>
+<option value="#make_with">
+- make_with
+</option>
+<option value="#make_with_hfs">
+- make_with_hfs
+</option>
+<option value="#make_with_posix">
+- make_with_posix
+</option>
+<option value="#Obtain_path_information">
+Obtain path information
+</option>
+<option value="#item_name">
+- item_name
+</option>
+<option value="#basename">
+- basename
+</option>
+<option value="#path_extension">
+- path_extension
+</option>
+<option value="#folder_ref">
+- folder_ref
+</option>
+<option value="#is_folder">
+- is_folder
+</option>
+<option value="#item_ref">
+- item_ref
+</option>
+<option value="#item_exists">
+- item_exists
+</option>
+<option value="#item_exists_without_update">
+- item_exists_without_update
+</option>
+<option value="#is_posix">
+- is_posix
+</option>
+<option value="#Converting_reference_form">
+Converting reference form
+</option>
+<option value="#as_alias">
+- as_alias
+</option>
+<option value="#as_furl">
+- as_furl
+</option>
+<option value="#posix_path">
+- posix_path
+</option>
+<option value="#hfs_path">
+- hfs_path
+</option>
+<option value="#as_text">
+- as_text
+</option>
+<option value="#Making_a_new_instance_from_the_instance">
+Making a new instance from the instance
+</option>
+<option value="#parent_folder">
+- parent_folder
+</option>
+<option value="#change_name">
+- change_name
+</option>
+<option value="#change_path_extension">
+- change_path_extension
+</option>
+<option value="#change_folder">
+- change_folder
+</option>
+<option value="#child">
+- child
+</option>
+<option value="#Error_Numbers_and_Error_Messages">
+Error Numbers and Error Messages
+</option>
+</select>
+			<div class="edit-script-link">
+				<a onclick="return runHelpScriptWithBundleRoot(this)" href="assets/editScript.scpt">Edit Script</a>
+			</div>
+		</div>
+		<!-- InstanceBeginEditable name="prev-next-item" --><div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_history/index.html"><span class="navibar-next">History</span></a></div><!-- InstanceEndEditable -->
+		<div id="contents">
+		<h1>PathInfo Reference</h1>
+<ul>
+<li>Version : 1.1</li>
+<li>Author : Tetsuro KURITA <a href="mailto:tkurita@mac.com">tkurita@mac.com</a></li>
+</ul>
+<h2 id="Class_methods">Class methods</h2>
+<p>Obtain information from a path quickly.</p>
+<h3 id="name_of"><a href="pages/name_of.html">name_of</a></h3>
+<p>Obtain a name from a reference to a file/folder.</p>
+<h3 id="basename_of"><a href="pages/basename_of.html">basename_of</a></h3>
+<p>Obtain a name of the item with removing a path extension.Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.</p>
+<h3 id="path_extension_of"><a href="pages/path_extension_of.html">path_extension_of</a></h3>
+<p>Obtain a path extension of the item. The result does not starts with ".".</p>
+<h3 id="split_name"><a href="pages/split_name.html">split_name</a></h3>
+<p>Split a file name into a base name and a path extension.</p>
+<h3 id="folder_of"><a href="pages/folder_of.html">folder_of</a></h3>
+<p>Obtain a folder path</p>
+<h2 id="Constructor_Methods">Constructor Methods</h2>
+<h3 id="make_with"><a href="pages/make_with.html">make_with</a></h3>
+<p>Make a PathInfo instance for a file reference.</p>
+<h3 id="make_with_hfs"><a href="pages/make_with_hfs.html">make_with_hfs</a></h3>
+<p>Make a PathInfo instance for a file reference.</p>
+<h3 id="make_with_posix"><a href="pages/make_with_posix.html">make_with_posix</a></h3>
+<p>Make a PathInfo instance for a file reference. A synonym of <a href="pages/make_with.html">make_with</a></p>
+<h2 id="Obtain_path_information">Obtain path information</h2>
+<h3 id="item_name"><a href="pages/item_name.html">item_name</a></h3>
+<p>Obtain a name of the file or the folder.</p>
+<h3 id="basename"><a href="pages/basename.html">basename</a></h3>
+<p>Obtain a name without path extension.</p>
+<h3 id="path_extension"><a href="pages/path_extension.html">path_extension</a></h3>
+<p>Obtain a path extension of the file name. The result does not starts with ".".</p>
+<h3 id="folder_ref"><a href="pages/folder_ref.html">folder_ref</a></h3>
+<p>Obtain a file reference to the folder containing the target.</p>
+<h3 id="is_folder"><a href="pages/is_folder.html">is_folder</a></h3>
+<p>Whether the target is a folder or not.</p>
+<h3 id="item_ref"><a href="pages/item_ref.html">item_ref</a></h3>
+<p>Obtain an internal file reference which the target contains.</p>
+<h3 id="item_exists"><a href="pages/item_exists.html">item_exists</a></h3>
+<p>Whether an item exits in the file sysem or not.</p>
+<h3 id="item_exists_without_update"><a href="pages/item_exists_without_update.html">item_exists_without_update</a></h3>
+<p>Whether an item exits in the file sysem or not.</p>
+<h3 id="is_posix"><a href="pages/is_posix.html">is_posix</a></h3>
+<p>If <a href="pages/child.html">child</a> and <a href="pages/change_folder.html">change_folder</a> prefer posix path, true is returned.</p>
+<h2 id="Converting_reference_form">Converting reference form</h2>
+<h3 id="as_alias"><a href="pages/as_alias.html">as_alias</a></h3>
+<p>Obtain a file reference as alias.</p>
+<h3 id="as_furl"><a href="pages/as_furl.html">as_furl</a></h3>
+<p>Obtain a file reference as File URL.</p>
+<h3 id="posix_path"><a href="pages/posix_path.html">posix_path</a></h3>
+<p>Obtain a file reference as POSIX path form.</p>
+<h3 id="hfs_path"><a href="pages/hfs_path.html">hfs_path</a></h3>
+<p>Obtain a file reference as HFS path form.</p>
+<h3 id="as_text"><a href="pages/as_text.html">as_text</a></h3>
+<p>Obtain a path text.</p>
+<h2 id="Making_a_new_instance_from_the_instance">Making a new instance from the instance</h2>
+<h3 id="parent_folder"><a href="pages/parent_folder.html">parent_folder</a></h3>
+<p>Obtain an instance of PathInfo referencing the folder containing the target.</p>
+<h3 id="change_name"><a href="pages/change_name.html">change_name</a></h3>
+<p>Make a new PathInfo changing the item name.</p>
+<h3 id="change_path_extension"><a href="pages/change_path_extension.html">change_path_extension</a></h3>
+<p>Make a new PathInfo changing the path extension</p>
+<h3 id="change_folder"><a href="pages/change_folder.html">change_folder</a></h3>
+<p>Make a new PathInfo changing the folder.</p>
+<h3 id="child"><a href="pages/child.html">child</a></h3>
+<p>Make a new PathInfo appending a sub path.</p>
+<h2 id="Error_Numbers_and_Error_Messages">Error Numbers and Error Messages</h2>
+<ul>
+<li>number : 980
+<ul>
+<li>message : Unknown data type. PathInfo can't convert to a path.</li>
+<li>Raise when a parameter passed to <a href="pages/make_with.html">make_with</a>, <a href="pages/make_with_hfs.html">make_with_hfs</a>, <a href="pages/make_with_posix.html">make_with_posix</a>,<a href="pages/change_folder.html">change_folder</a> can not be treated as a file reference.</li>
+</ul>
+</li>
+</ul>
+		</div>
+	</body>
+
+</html>

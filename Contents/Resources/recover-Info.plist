@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>copyright 2010-2012, Tetsuro KURITA</string>
+	<key>CFBundleGetInfoString</key>
+	<string>1.1 copyright 2010-2012, Tetsuro KURITA</string>
+	<key>CFBundleVersion</key>
+	<string>1.1</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>PathInfo Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>PathInfo Help</string>
+	<key>CFBundleIdentifier</key>
+	<string>Scriptfactory.PathInfo</string>
+</dict>
+</plist>
