@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleGetInfoString</key>
-	<string>1.1 copyright 2010-2012, Tetsuro KURITA</string>
+	<string>1.2 copyright 2010-2012, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>PathInfo Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -11,9 +11,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>Scriptfactory.PathInfo</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>copyright 2010-2012, Tetsuro KURITA</string>
 	<key>WindowState</key>
