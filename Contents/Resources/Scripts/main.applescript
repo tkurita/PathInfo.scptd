@@ -512,6 +512,10 @@ on child(subpath)
 	return make_with_opts(a_path & subpath, {prefering_posix:is_posix()})
 end child
 
+(*!@abstruct
+Make a new PathInfo which refering the same file to the target.
+@result script object : a instance of PathInfo
+*)
 on clone()
 	return make_with_vars(parent, my _disk, my _folder, my _name, my _basename, my _path_extension, my _is_folder, my _item_ref)
 end clone
