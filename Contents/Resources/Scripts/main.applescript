@@ -19,7 +19,7 @@ property version : "1.2.1"
 
 (*!@title PathInfo Reference
 * Version : 1.2.1
-* Author : Tetsuro KURITA ((<tkurita@mac.com>))
+* Author : Tetsuro KURITA ((<scriptfactory@mac.com>))
 *)
 
 (*!@group Class methods

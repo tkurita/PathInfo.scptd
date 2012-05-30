@@ -11,11 +11,15 @@
 		<meta name="keywords" content="PathInfo, AppleScript" />
 		<script type="text/javascript" src="assets/run_helpscript.js"></script>
 		<script type="text/javascript" src="assets/navibar-jump.js"></script>
-		<link href="./" id="HelpBookRoot" />
+		<link href="../" id="HelpBookRoot" />
 	</head>
 
 	<body>
 		<div id="navi-bar">
+			<div class="edit-script-link">
+				<a onclick="return runHelpScriptWithBundleRoot(this)" href="assets/editScript.scpt">Edit Script</a>
+			</div>
+			<div class="left-contents">
 			<div class="to-root">
 				<!-- InstanceBeginEditable name="to-root" --><a href="../index.html">PathInfo Help</a><!-- InstanceEndEditable -->
 			</div>
@@ -122,19 +126,20 @@ Making a new instance from the instance
 <option value="#child">
 - child
 </option>
+<option value="#clone">
+- clone
+</option>
 <option value="#Error_Numbers_and_Error_Messages">
 Error Numbers and Error Messages
 </option>
 </select>
-			<div class="edit-script-link">
-				<a onclick="return runHelpScriptWithBundleRoot(this)" href="assets/editScript.scpt">Edit Script</a>
 			</div>
 		</div>
 		<!-- InstanceBeginEditable name="prev-next-item" --><div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_history/index.html"><span class="navibar-next">History</span></a></div><!-- InstanceEndEditable -->
 		<div id="contents">
 		<h1>PathInfo Reference</h1>
 <ul>
-<li>Version : 1.2</li>
+<li>Version : 1.2.1</li>
 <li>Author : Tetsuro KURITA <a href="mailto:tkurita@mac.com">tkurita@mac.com</a></li>
 </ul>
 <h2 id="Class_methods">Class methods</h2>
@@ -199,6 +204,8 @@ Error Numbers and Error Messages
 <p>Make a new PathInfo changing the folder.</p>
 <h3 id="child"><a href="pages/child.html">child</a></h3>
 <p>Make a new PathInfo appending a sub path.</p>
+<h3 id="clone"><a href="pages/clone.html">clone</a></h3>
+<p>Make a new PathInfo which refering the same file to the target.</p>
 <h2 id="Error_Numbers_and_Error_Messages">Error Numbers and Error Messages</h2>
 <ul>
 <li>number : 980
