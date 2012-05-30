@@ -15,10 +15,10 @@ You should have received a copy of the GNU General Public License
 along with Foobar.  If not, see <http://www.gnu.org/licenses/> *)
 
 property name : "PathInfo"
-property version : "1.2"
+property version : "1.2.1"
 
 (*!@title PathInfo Reference
-* Version : 1.2
+* Version : 1.2.1
 * Author : Tetsuro KURITA ((<tkurita@mac.com>))
 *)
 
