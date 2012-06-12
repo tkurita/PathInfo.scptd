@@ -321,6 +321,27 @@ on path_extension()
 end path_extension
 
 (*!@abstruct 
+Obtain the volume name of the item referenced by the instance.
+@result text
+*)
+on volume_name()
+	if my _disk is not "/" then
+		set a_result to make_with(my _disk)'s item_name()
+	end if
+	-- if my _disk is an alias, item_name() will return ""
+	if a_result is not "" then
+		return a_result
+	end if
+	
+	set a_path to hfs_path()
+	set tid to AppleScript's text item delimiters
+	set AppleScript's text item delimiters to {":"}
+	set a_result to text item 1 of a_path
+	set AppleScript's text item delimiters to tid
+	return a_result
+end volume_name
+
+(*!@abstruct 
 Obtain a file reference to the folder containing the target.
 @result an alias or a path
 *)
@@ -598,29 +619,15 @@ end run
 on debug()
 	--boot (module loader) for me
 	
-	--set a_path to "/Users/tkurita/Dev/Projects/TeX Tools for mi/サンプル/insert-file/sample-figure.pdf"
-	--set a_path to "/Volumes/Users/tkurita/Dev/Projects/TeX Tools for mi/サンプル/insert-file/"
-	--set a_path to path to me
-	--set a_path to alias "Macintosh HD:Users:tkurita:Desktop:Untitled2.scpt"
-	--set a_path to "HelpSearch.scpt"
-	--set a_result to do(POSIX file a_path)
-	--class of name of a_result
-	--set a_path to choose file name default name "index.html"
-	--prefer_posix(false)
-	set a_path to "Macintosh HD:Users:tkurita:Library:Preferences:InsertSignature"
-	--set pathelems to POSIXPathTranslator's decompose(a_path)
-	--return pathelems
-	--return pathelems's compose(true)
-	set a_result to make_with(a_path)
-	return a_result's change_path_extension(missing value)'s posix_path()
-	return a_result's posix_path()
-	--set a_result to make_with_hfs(a_path)
-	return a_result's as_text()
-	log a_result's build_path()
-	--return a_result's clone()
-	return a_result's change_path_extension("txt")
-	return a_result's clone()
-	return a_result
+	--set a_path to "/Volumes/Macintosh HD/Users/tkurita/Dev/Projects/TeX Tools for mi/サンプル/insert-file/sample-figure.pdf"
+	--set a_path to "Macintosh HD:Users:tkurita:BackdropUserBackground.png"
+	--set a_path to alias "Macintosh HD:Users:tkurita:BackdropUserBackground.png"
+	set a_path to POSIX file "/Users/tkurita/BackdropUserBackground.png"
+	--set a_path to "/Users/tkurita/BackdropUserBackground.png"
+	return make_with(a_path)'s volume_name()
+	set a_path to alias "Macintosh HD"
+	return make_with(a_path)'s item_name()
+	
 end debug
 
 
