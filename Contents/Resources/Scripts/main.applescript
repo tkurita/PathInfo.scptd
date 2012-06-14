@@ -49,6 +49,8 @@ end basename_of
 
 (*!@abstruct
 Obtain a path extension of the item. The result does not starts with ".".
+@description
+<span class="className">missing value</span> will be returned, if the target item does not have a path extension.
 @param an_item (a reference to file/folder) : 
 Almost types of references to a file or a folder can be accepted. e.g.) HFS path, POSIX path, alias, file specification, reference form of Finder and furl.
 <!-- end locale -->
@@ -314,6 +316,8 @@ end basename
 
 (*!@abstruct 
 Obtain a path extension of the file name. The result does not starts with ".".
+@description
+<span class="className">missing value</span> will be returned, if the target item does not have a path extension.
 @result text
 *)
 on path_extension()
