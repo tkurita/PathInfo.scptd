@@ -15,10 +15,10 @@ You should have received a copy of the GNU General Public License
 along with Foobar.  If not, see <http://www.gnu.org/licenses/> *)
 
 property name : "PathInfo"
-property version : "1.2.1"
+property version : "1.2.2b"
 
 (*!@title PathInfo Reference
-* Version : 1.2.1
+* Version : 1.2.2b
 * Author : Tetsuro KURITA ((<scriptfactory@mac.com>))
 *)
 
@@ -108,7 +108,7 @@ script POSIXPathTranslator
 	end to_text
 	
 	on to_alias(a_file)
-		return (POSIX file a_file) as alias
+		return (a_file as POSIX file) as alias
 	end to_alias
 	
 	on resolve_disk(path_elements)
@@ -126,7 +126,7 @@ script POSIXPathTranslator
 	end resolve_disk
 	
 	on hfs_path()
-		return (POSIX file (POSIX path of my _item_ref)) as Unicode text
+		return ((POSIX path of my _item_ref) as POSIX file) as Unicode text
 	end hfs_path
 	
 	on as_text()
@@ -212,9 +212,9 @@ on make_with_posix(a_path)
 end make_with_posix
 
 on make_with_pathtrans(a_path, pathtrans)
+	-- log "start make_with_pathtrans"
 	set a_class to class of a_path
 	set is_text to false
-	
 	if a_class is in {Unicode text, string, text} then
 		set is_text to true
 	else
@@ -236,13 +236,11 @@ on make_with_pathtrans(a_path, pathtrans)
 			set a_path to pathtrans's to_text(a_path)
 		end if
 	end if
-	
 	set path_elements to pathtrans's decompose(a_path)
 	set a_disk to pathtrans's resolve_disk(path_elements)
 	if not is_text then
 		set a_disk to pathtrans's to_alias(a_disk)
 	end if
-	
 	set a_name to path_elements's item_at(-1)
 	if a_name is "" then
 		set folder_flag to true
@@ -268,7 +266,6 @@ on make_with_pathtrans(a_path, pathtrans)
 			set a_folder to missing value
 		end if
 	end if
-	
 	set {a_basename, a_suffix} to split_name(a_name)
 	return make_with_vars(pathtrans, a_disk, a_folder, a_name, a_basename, a_suffix, folder_flag, a_path)
 end make_with_pathtrans
@@ -626,7 +623,7 @@ on debug()
 	--set a_path to "/Volumes/Macintosh HD/Users/tkurita/Dev/Projects/TeX Tools for mi/サンプル/insert-file/sample-figure.pdf"
 	--set a_path to "Macintosh HD:Users:tkurita:BackdropUserBackground.png"
 	--set a_path to alias "Macintosh HD:Users:tkurita:BackdropUserBackground.png"
-	set a_path to POSIX file "/Users/tkurita/BackdropUserBackground.png"
+	set a_path to "/Users/tkurita/BackdropUserBackground.png" as POSIX file
 	--set a_path to "/Users/tkurita/BackdropUserBackground.png"
 	return make_with(a_path)'s volume_name()
 	set a_path to alias "Macintosh HD"
