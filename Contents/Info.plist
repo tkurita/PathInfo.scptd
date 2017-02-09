@@ -5,19 +5,25 @@
 	<key>CFBundleGetInfoString</key>
 	<string>1.2.1 copyright 2010-2012, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>PathInfo Help</string>
+	<string>PathInfoHelp</string>
 	<key>CFBundleHelpBookName</key>
-	<string>PathInfo Help</string>
+	<string>net.script-factory.PathInfo.help</string>
 	<key>CFBundleIdentifier</key>
-	<string>Scriptfactory.PathInfo</string>
+	<string>net.script-factory.PathInfo</string>
+	<key>CFBundleName</key>
+	<string>PathInfo</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.1</string>
+	<string>1.2.3</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.1</string>
+	<string>1.2.3</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>copyright 2010-2012, Tetsuro KURITA</string>
+	<string>Copyright 2010-2017, Tetsuro KURITA</string>
 	<key>WindowState</key>
 	<dict>
+		<key>bundleDividerCollapsed</key>
+		<false/>
+		<key>bundlePositionOfDivider</key>
+		<real>576</real>
 		<key>dividerCollapsed</key>
 		<false/>
 		<key>eventLogLevel</key>
@@ -27,9 +33,9 @@
 		<key>positionOfDivider</key>
 		<real>440</real>
 		<key>savedFrame</key>
-		<string>405 235 662 642 0 0 1440 878 </string>
-		<key>selectedTabView</key>
-		<string>event log</string>
+		<string>79 223 875 642 0 0 1440 877 </string>
+		<key>selectedTab</key>
+		<string>log</string>
 	</dict>
 </dict>
 </plist>

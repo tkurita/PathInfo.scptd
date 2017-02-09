@@ -1,0 +1,72 @@
+.uncompiled {
+	font-family : Menlo-Regular;
+	color : #7F007F;
+}
+.normal {
+	font-family : Verdana;
+	color : #000000;
+}
+.langKeyword {
+	font-family : Verdana-Bold;
+	color : #000000;
+}
+.appKeyword {
+	font-family : Verdana;
+	color : #0000FF;
+}
+.comment {
+	font-family : Verdana;
+	color : #4C4E4E;
+}
+.literal {
+	font-family : Verdana;
+	color : #000000;
+}
+.userDefine {
+	font-family : Verdana;
+	color : #407F00;
+}
+.stringLiteral {
+	font-family : Verdana;
+	color : #000000;
+}
+.commandName {
+	font-family : Verdana-Bold;
+	color : #0000FF;
+}
+.parameterName {
+	font-family : Verdana;
+	color : #0000FF;
+}
+.className {
+	font-family : Verdana-Italic;
+	color : #0000FF;
+}
+.propertyName {
+	font-family : Verdana;
+	color : #6C05D3;
+}
+.enumeratedValues {
+	font-family : Verdana-Italic;
+	color : #6C05D3;
+}
+.additionCommandName {
+	font-family : Verdana-Bold;
+	color : #0016A0;
+}
+.additionParameterName {
+	font-family : Verdana;
+	color : #0016A0;
+}
+.additionClass {
+	font-family : Verdana-Italic;
+	color : #0016A0;
+}
+.additionProperty {
+	font-family : Verdana;
+	color : #4415A0;
+}
+.additionEnumeratedValue {
+	font-family : Verdana-Italic;
+	color : #4415A0;
+}
