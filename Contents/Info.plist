@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleGetInfoString</key>
-	<string>1.2.1 copyright 2010-2012, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>PathInfoHelp</string>
 	<key>CFBundleHelpBookName</key>
@@ -33,7 +31,7 @@
 		<key>positionOfDivider</key>
 		<real>440</real>
 		<key>savedFrame</key>
-		<string>79 223 875 642 0 0 1440 877 </string>
+		<string>252 212 875 642 0 0 1440 877 </string>
 		<key>selectedTab</key>
 		<string>log</string>
 	</dict>
